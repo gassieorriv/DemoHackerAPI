@@ -1,0 +1,18 @@
+
+<div class="row" >
+  <div class="col-sm-6" style="margin-top:10px" *ngFor="let st of stories">
+    <div class="card border-danger mb-3">
+      <div class="card-header">
+        <a *ngIf="st.url != null" href="{{st.url}}"><h5 class="card-title item-link">{{st.title}}</h5></a>
+        <h5 *ngIf="st.url == null" class="card-title no-link">{{st.title}}</h5>
+      </div>
+      <div class="card-body">
+        <p class="by">
+          <small>By: {{st.by}} </small>
+          <br />
+          <small class="friendly-time">{{st.friendlytime}}</small>
+        </p>
+      </div>
+    </div>
+    </div>
+  </div>

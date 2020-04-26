@@ -1,0 +1,5 @@
+{
+  "env" :  "dev",
+  "BaseURL": "https://hacker-news.firebaseio.com/v0/",
+
+}
