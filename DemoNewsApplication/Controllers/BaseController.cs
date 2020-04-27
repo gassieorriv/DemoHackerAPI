@@ -12,10 +12,9 @@ namespace DemoNewsApplication.Controllers
     {
         public IConfiguration _configuration { get; set; }
         public ILogger _logger { get; set; }
-        public BaseController(IConfiguration configuration,ILogger logger)
+        public BaseController(IConfiguration configuration)
         {
             _configuration = configuration;
-            _logger = logger;
         }
 
 

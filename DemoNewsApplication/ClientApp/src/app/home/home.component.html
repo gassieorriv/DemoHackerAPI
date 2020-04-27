@@ -1,9 +1,15 @@
-
-<div class="row" >
-  <div class="col-sm-6" style="margin-top:10px" *ngFor="let st of stories">
+<div class="row well">
+  <div class="col-sm-12">
+    <form class="form-inline my-2 my-lg-0" name="search-container" id="serach-container">
+      <input class="form-control mr-sm-1" type="search" name="search" placeholder="Search" [(ngModel)]="searchText" aria-label="Search">
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-6" style="margin-top:10px" *ngFor="let st of stories | filter : searchText">
     <div class="card border-danger mb-3">
       <div class="card-header">
-        <a *ngIf="st.url != null" href="{{st.url}}"><h5 class="card-title item-link">{{st.title}}</h5></a>
+        <a *ngIf="st.url != null" href="{{st.url}}" target="_blank"><h5 class="card-title item-link">{{st.title}}</h5></a>
         <h5 *ngIf="st.url == null" class="card-title no-link">{{st.title}}</h5>
       </div>
       <div class="card-body">
@@ -14,5 +20,5 @@
         </p>
       </div>
     </div>
-    </div>
   </div>
+</div>
