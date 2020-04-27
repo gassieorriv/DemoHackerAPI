@@ -43,8 +43,9 @@ namespace DemoNewsApplication.Model
                 response.data = null;
                 response.errorMessage = ex.Message;
                 response.isSuccessful = false;
+                response.friendlyMessage = "Error retrieving articles. Please try again.";
             }
             return response;
-        } 
+        }
     }
 }
