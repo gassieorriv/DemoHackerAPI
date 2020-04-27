@@ -26,5 +26,23 @@ namespace DemoNewsApplicationTest
           ApiResponse<int[]> response = new HackerNews(configuration).getNewStories();
           Assert.IsFalse(response.isSuccessful);
         }
+
+        [TestMethod]
+        public void GetNewStory_Success()
+        {
+            int id = 22997417;
+            IConfiguration configuration = new ConfigurationBuilder().AddInMemoryCollection(_Configuration).Build();
+            ApiResponse<Article> response = new HackerNews(configuration).getStory(id);
+            Assert.IsTrue(response.data.@by != null);
+        }
+
+        [TestMethod]
+        public void GetNewStory_Fail()
+        {
+            int id = 0;
+            IConfiguration configuration = new ConfigurationBuilder().AddInMemoryCollection(_InvalidConfiguration).Build();
+            ApiResponse<Article> response = new HackerNews(configuration).getStory(id);
+            Assert.IsFalse(response.data.@by != null);
+        }
     }
 }

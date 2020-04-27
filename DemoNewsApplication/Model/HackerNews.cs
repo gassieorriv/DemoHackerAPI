@@ -47,5 +47,39 @@ namespace DemoNewsApplication.Model
             }
             return response;
         }
+        public ApiResponse<Article> getStory(int id)
+        {
+            string endpoint = "item/" + id + ".json";
+            ApiResponse<Article> response = new ApiResponse<Article>();
+            try
+            {
+                var httpRequestMessage = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Get,
+                    RequestUri = new Uri(baseURL + endpoint),
+                    Headers =
+                    {
+                       { HttpRequestHeader.Accept.ToString(), "application/json" },
+                       { "X-Version", "1" }
+                    },
+                };
+
+                client = new HttpClient();
+                var httpResponse = client.SendAsync(httpRequestMessage).Result;
+                string contentResponse = httpResponse.Content.ReadAsStringAsync().Result;
+                response.data = JsonConvert.DeserializeObject<Article>(contentResponse);
+                response.isSuccessful = true;
+                response.friendlyMessage = "Successfully retrieved news";
+                response.errorMessage = null;
+            }
+            catch (Exception ex)
+            {
+                response.data = null;
+                response.errorMessage = ex.Message;
+                response.isSuccessful = false;
+                response.friendlyMessage = "Error retrieving articles. Please try again.";
+            }
+            return response;
+        }
     }
 }
