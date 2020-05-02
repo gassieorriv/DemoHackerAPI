@@ -18,7 +18,7 @@ export class HomeComponent {
   {
     this.stories = [];
     this.count = 0;
-    http.get<APIResponse>(baseUrl + "/GetCacheValues").subscribe(result => {
+    http.get<APIResponse>(baseUrl + "/GetCacheValues").subscribe(result => { // GetCookieValues|GetCacheValues
       this.response = result;
       if (this.response.isSuccessful) {
         for (let i of this.response.data) {
@@ -48,25 +48,6 @@ export class HomeComponent {
                 this.stories.push(this.story);
                 if (this.count == 500) {
                   this.cacheData(baseUrl);
-                 /*var data = JSON.stringify(this.stories);
-                  const headerDict = {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Headers': 'Content-Type',
-                  }
-                  const requestOptions =
-                  {
-                    headers: new HttpHeaders(headerDict),
-                  };
-                  http.post<APIResponse>(baseUrl + "/CacheValues", data, requestOptions).subscribe(result => {
-                    this.response = result;
-                    if (this.response.isSuccessful) {
-                      console.error(this.response.friendlyMessage);
-                    }
-                    else {
-                      console.error(this.response.errorMessage);
-                    }
-                  });*/
                 }
 
               });
@@ -100,7 +81,7 @@ export class HomeComponent {
       else {
         console.error(this.response.errorMessage);
       }
-    });
+    }); //CacheValues|StoreValueInCookie
   }
 }
 

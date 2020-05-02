@@ -10,11 +10,13 @@ using Microsoft.Extensions.Logging;
 
 namespace DemoNewsApplication.Controllers
 {
-    public class BaseController : ControllerBase
+    public class BaseController : Controller
     {
         public IConfiguration _configuration { get; set; }
         public ILogger _logger { get; set; }       
         public IDistributedCache _cache;
+        public string ARTICLES = "articles";
+
         public BaseController(IConfiguration configuration, IDistributedCache memoryCache)
         {
             _configuration = configuration;
